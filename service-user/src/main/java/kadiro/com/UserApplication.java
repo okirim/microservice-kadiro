@@ -4,7 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"kadiro.com", "kadiro.com.user"})
 public class UserApplication
 {
     public static void main( String[] args )
