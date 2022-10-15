@@ -1,0 +1,9 @@
+kadiro/com/HttpResponse.class
+kadiro/com/role/RoleVM.class
+kadiro/com/role/Role.class
+kadiro/com/user/User.class
+kadiro/com/HttpResponseWithPagination.class
+kadiro/com/user/UserVM.class
+kadiro/com/permission/Permission.class
+kadiro/com/permission/PermissionVM.class
+kadiro/com/user/UserReq.class

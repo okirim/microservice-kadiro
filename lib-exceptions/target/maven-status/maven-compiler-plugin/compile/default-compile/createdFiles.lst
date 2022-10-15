@@ -1,0 +1,5 @@
+kadiro/com/exceptions/UsernameNotFoundException.class
+kadiro/com/exceptions/AppExceptionsHandler.class
+kadiro/com/exceptions/ErrorDetails.class
+kadiro/com/exceptions/AppException.class
+kadiro/com/exceptions/ErrorMessage.class
