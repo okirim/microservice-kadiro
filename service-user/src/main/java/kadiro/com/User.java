@@ -1,6 +1,5 @@
 package kadiro.com;
 
-import kadiro.com.role.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -39,12 +38,22 @@ public class User implements Serializable {
     private String country;
 
     private int zipCode;
-    @Column(nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(nullable = false, updatable = false)
     private Timestamp createdAt;
 
-    @Column(nullable = true, columnDefinition = "TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP")
+    @Column(nullable = true)
     private Timestamp updatedAt;
 
     private Long roleId;
+
+
+    @PrePersist
+    protected void onCreate() {
+         createdAt = new Timestamp(new Date().getTime());
+    }
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Timestamp(new Date().getTime());
+    }
 
 }

@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  user_app:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    container_name: user_app
+    ports:
+      - '3000:3000'
+    networks:
+      - postgres
+    depends_on:
+      - pg
+    restart: unless-stopped
+  pg:
+    image: postgres
+    container_name: user_db
+    ports:
+      - '5433:5432'
+    volumes:
+      - postgres_data:/data/postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: users
+      PGDATA: /data/postgres
+      command: psql && create database users;
+             
+
+    restart: unless-stopped
+    networks:
+      - postgres
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: user_pg_admin
+    ports:
+      - '5051:80'
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-db@db.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-root}
+      PGADMIN_CONFIG_SERVER_MODE: ${PGADMIN_CONFIG_SERVER_MODE:-False}
+    networks:
+      - postgres
+networks:
+  postgres:
+    driver: bridge
+volumes:
+  postgres_data:
+  pgadmin_data:
